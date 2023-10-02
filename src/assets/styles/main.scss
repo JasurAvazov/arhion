@@ -1,0 +1,41 @@
+@import './fonts.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: grey;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: rgb(211, 208, 208);
+}
