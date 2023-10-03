@@ -36,9 +36,28 @@
                 <div class="service-right">
                     <div class="service__about">
                         <h3 class="service__about-title">{{ activedTab.title }}</h3>
-                        <pre class="service__about-text">
-{{ activedTab.text }}
-                        </pre>
+                        <div class="service__about-list">
+                            <div
+                                v-for="(item, index) in activedTab.text"
+                                :key="index"
+                                class="service__about-item"
+                            >
+                                <pre class="service__about-text">
+{{ item }}
+                                </pre>
+                                <div class="about__btn">
+                                    <div class="about__btn-text">ПОДРОБНЕЕ
+                                        <p v-if="activedTab.subtitle">О {{ activedTab.subtitle[index] }}</p>
+                                    </div>
+                                    <div class="about__btn-arrow">
+                                        <img
+                                            :src="arrowWhite"
+                                            alt="arrow"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,37 +69,39 @@
 import { ref, computed } from 'vue';
 
 import arrow from '../assets/images/svg/tabs-arrow.svg';
+import arrowWhite from '../assets/images/svg/white-arrow.svg';
 
 const tabsList = ref([
     {
         id: 1,
         title: 'Проектирование',
         active: true,
-        text: '  Индивидуальный проект дома - это сложный и ответственный процесс, требующий внимания к каждой детали. \n Поэтому, наше архитектурное бюро АРХИОН предоставит и полный спектр услуг от разработки концепции эскизов до подготовки строительной документации и сопровождения проекта.'
+        text: ['  Индивидуальный проект дома - это сложный и ответственный процесс, требующий внимания к каждой детали. \n Поэтому, наше архитектурное бюро АРХИОН предоставит и полный спектр услуг от разработки концепции эскизов до подготовки строительной документации и сопровождения проекта.']
     },
     {
         id: 2,
         title: 'Строительство',
         active: false,
-        text: '  Выполним, как поэтапное строительство, так и построить дом «под ключ». \n   С нами, вам не придется беспокоиться о поиске строительных материалов, их своевременной доставке или вывозе мусора или контроле строительных операций. \n Позаботимся о строительном надзоре, с соблюдением строительных норм и правил, а так же четких сроков.'
+        text: ['  Выполним, как поэтапное строительство, так и построить дом «под ключ». \n   С нами, вам не придется беспокоиться о поиске строительных материалов, их своевременной доставке или вывозе мусора или контроле строительных операций. \n Позаботимся о строительном надзоре, с соблюдением строительных норм и правил, а так же четких сроков.']
     },
     {
         id: 3,
         title: 'Геология и Геодезия',
+        subtitle: ['Геологии', 'Геодезии'],
         active: false,
-        text: ''
+        text: [' Геология участка необходима для расчета стоимости, прочности, надежности фундамента и предотвращает риски разрушения дома.', '   Геодезия участка необходима для определения высоты фундамента и посадки дома, которая в свою очередь сильно влияет на бюджет.']
     },
     {
         id: 4,
         title: 'Дизайн интерьера',
         active: false,
-        text: ' Дизайн проект — это самая творческий и интересный этап. \n   В котором важно учесть не только эстетический стиль дизайн - решения, но и комфорт в последующей повседневной эксплуатации. \n  Только в сочетании красоты и удобства, дизайн будет уникальным и потрясающим. \n  А дом, в котором вы будите проводить время  комфортным и уютным.'
+        text: [' Дизайн проект — это самая творческий и интересный этап. \n   В котором важно учесть не только эстетический стиль дизайн - решения, но и комфорт в последующей повседневной эксплуатации. \n  Только в сочетании красоты и удобства, дизайн будет уникальным и потрясающим. \n  А дом, в котором вы будите проводить время  комфортным и уютным.']
     },
     {
         id: 5,
         title: 'Внутренняя отделка',
         active: false,
-        text: '   Обеспечим идеальное качество отделки дома в полном соответствии с дизайн проектом. \n Произведем  монтаж  всех необходимых коммуникаций и ремонтные работы в черновой и чистовой отделке. \n Установим декор и завезем мебель. После завершения работ Вам останется только въехать в готовый дом.'
+        text: ['   Обеспечим идеальное качество отделки дома в полном соответствии с дизайн проектом. \n Произведем  монтаж  всех необходимых коммуникаций и ремонтные работы в черновой и чистовой отделке. \n Установим декор и завезем мебель. После завершения работ Вам останется только въехать в готовый дом.']
     },
 ])
 
@@ -88,7 +109,8 @@ const activedTab = computed(() => {
     let item = tabsList.value.filter(item => item.active == true)[0]
     return {
         title: item.title,
-        text: item.text
+        text: item.text,
+        subtitle: item.subtitle,
     }
 });
 
@@ -209,13 +231,68 @@ const changeTab = (id) => {
         }
 
         &-text {
-            margin-top: 48px;
             color: $primary-white;
             text-align: justify;
             font-family: 'Montserrat';
             font-size: 24px;
             line-height: 32px;
             white-space: pre-wrap;
+        }
+
+        &-list {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
+}
+
+.about {
+    &__btn {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        gap: 130px;
+
+        &-text {
+            cursor: pointer;
+            height: 52px;
+            color: $primary-white;
+            font-family: 'Montserrat';
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 26px;
+            width: 145px;
+            position: relative;
+            text-transform: uppercase;
+
+            &::after {
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 325px;
+                background: $primary-white;
+                left: 0;
+                top: 50%;
+            }
+        }
+
+        &-arrow {
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid $gold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 35px;
+                height: auto;
+                transform: translate(-210%, -135%);
+            }
         }
     }
 }
