@@ -2,18 +2,16 @@
     <section class="dostep">
         <div class="container">
             <h2 class="dostep-title">
-                нужен проект
+                {{ content.title }}
             </h2>
             <h3 class="dostep-subtitle">
-                Индвидуальное проектирование
+                {{ content.subtitle }}
             </h3>
             <p class="dostep-article">
-                Продолжить вдохновляться - перейдите на страницу индивидуального проектирования, где вы сможете сделать
-                каждую деталь вашего будущего дома выразительной, олицетворяющей вас. Откройте двери в мир творчества и
-                возможностей.
+                {{ content.text }}
             </p>
             <div class="dostep__btn">
-                <p class="dostep__btn-text">Воплотите свои мечты</p>
+                <p class="dostep__btn-text">{{ content.btnText }}</p>
                 <div class="dostep__btn-arrow">
                     <img
                         :src="arrowGray"
@@ -25,7 +23,7 @@
         <div class="dostep-bg">
             <div class="filter"></div>
             <img
-                :src="dostepBg"
+                :src="content.bgLink"
                 alt="bg image"
             >
         </div>
@@ -33,8 +31,13 @@
 </template>
 
 <script setup>
-import dostepBg from '../assets/images/jpg/dostepBg.jpg';
 import arrowGray from '../assets/images/svg/gray-arrow.svg';
+
+import { defineProps } from 'vue';
+
+const { content } = defineProps(['content']);
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -83,7 +86,7 @@ import arrowGray from '../assets/images/svg/gray-arrow.svg';
     &-title {
         color: rgba(167, 139, 115, 0.10);
         font-family: 'Inter';
-        font-size: 96px;
+        font-size: 90px;
         font-weight: 700;
         text-transform: uppercase;
         line-height: 96px;
@@ -95,7 +98,7 @@ import arrowGray from '../assets/images/svg/gray-arrow.svg';
         font-size: 42px;
         font-weight: 400;
         line-height: 48px;
-        margin-top: -36px;
+        margin-top: -30px;
     }
 
     &-article {
@@ -111,7 +114,6 @@ import arrowGray from '../assets/images/svg/gray-arrow.svg';
     &__btn {
         display: flex;
         align-items: center;
-        gap: 100px;
         cursor: pointer;
         margin-top: 100px;
 
@@ -122,12 +124,13 @@ import arrowGray from '../assets/images/svg/gray-arrow.svg';
             font-weight: 400;
             line-height: 26px;
             position: relative;
+            width: 475px;
 
             &::after {
                 content: '';
                 position: absolute;
                 height: 1px;
-                width: 620px;
+                width: 570px;
                 background: $gray;
                 left: 0;
                 top: 160%;
@@ -148,7 +151,7 @@ import arrowGray from '../assets/images/svg/gray-arrow.svg';
             img {
                 width: 64px;
                 height: 20px;
-                transform: translate(-40%, -100%);
+                transform: translate(-40%, -90%);
             }
         }
     }

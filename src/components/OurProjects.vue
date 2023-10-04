@@ -379,6 +379,16 @@
 
                 </li>
             </ul>
+            <div class="projects__btn">
+                <p class="projects__btn-text">ПОСМОТРЕТЬ ВСЕ
+                </p>
+                <div class="projects__btn-arrow">
+                    <img
+                        :src="arrowIcon"
+                        alt="arrow icon"
+                    >
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -388,6 +398,7 @@ import projectItem from '../assets/images/jpg/projectItem.jpg';
 import likeIcon from '../assets/images/svg/like.svg';
 import bedIcon from '../assets/images/svg/bed.svg';
 import bathIcon from '../assets/images/svg/bath.svg';
+import arrowIcon from '../assets/images/svg/gray-arrow-small.svg';
 
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -408,7 +419,8 @@ export default {
             projectItem: projectItem,
             likeIcon: likeIcon,
             bedIcon: bedIcon,
-            bathIcon: bathIcon
+            bathIcon: bathIcon,
+            arrowIcon: arrowIcon
         }
     },
     setup() {
@@ -423,7 +435,7 @@ export default {
 @import '../assets/styles/variables.scss';
 
 .projects {
-    padding: 120px 0;
+    padding: 120px 0 60px;
 
     &-title {
         color: rgba(167, 139, 115, 0.10);
@@ -455,6 +467,52 @@ export default {
             position: relative;
             background-color: $primary-white;
             box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 90px;
+        cursor: pointer;
+        margin-top: 24px;
+
+        &-text {
+            color: $gray;
+            font-family: 'Montserrat';
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 26px;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 336px;
+                background: $gray;
+                left: 0;
+                top: 102%;
+            }
+        }
+
+        &-arrow {
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid $gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(10px);
+
+            img {
+                width: 35px;
+                height: 20px;
+                transform: translate(-210%, -35%);
+            }
         }
     }
 }
