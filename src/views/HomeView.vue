@@ -3,7 +3,8 @@ import TheMain from '../components/TheMain.vue'
 import OurServiсes from '../components/OurServiсes.vue';
 import OurProjects from '../components/OurProjects.vue';
 import TheArticle from '../components/TheArticle.vue';
-import TheBanner from '../components/TheBanner.vue';
+import TheBanner from '../components/TheBanner.vue'
+import ReviewUs from '../components/ReviewUs.vue';
 
 const article = {
   zero: {
@@ -79,6 +80,10 @@ const banner = {
   second: {
     title: 'Создаем пространства, в которых вы ощущаете себя дома',
     bgLink: '../src/assets/images/png/bannerSecond.png'
+  },
+  third: {
+    title: 'Дизайн, который меняет мир вокруг вас',
+    bgLink: '../src/assets/images/png/bannerThird.png'
   }
 }
 </script>
@@ -92,11 +97,13 @@ const banner = {
   <TheArticle :content="article.second"></TheArticle>
   <TheBanner :content="banner.first"></TheBanner>
   <TheArticle :content="article.third"></TheArticle>
+  <ReviewUs></ReviewUs>
   <TheArticle :content="article.fourth"></TheArticle>
   <TheArticle :content="article.fifth"></TheArticle>
   <TheBanner :content="banner.second"></TheBanner>
   <TheArticle :content="article.sixth"></TheArticle>
   <TheArticle :content="article.seventh"></TheArticle>
+  <TheBanner :content="banner.third"></TheBanner>
   <TheArticle :content="article.eighth"></TheArticle>
 </template>
 
