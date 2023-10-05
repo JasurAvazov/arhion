@@ -33,8 +33,6 @@
 <script setup>
 import arrowGray from '../assets/images/svg/gray-arrow.svg';
 
-import { defineProps } from 'vue';
-
 const { content } = defineProps(['content']);
 
 
@@ -151,7 +149,7 @@ const { content } = defineProps(['content']);
             img {
                 width: 64px;
                 height: 20px;
-                transform: translate(-40%, -90%);
+                transform: translate(-42%, -90%);
             }
         }
     }

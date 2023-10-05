@@ -5,6 +5,8 @@ import OurProjects from '../components/OurProjects.vue';
 import TheArticle from '../components/TheArticle.vue';
 import TheBanner from '../components/TheBanner.vue'
 import ReviewUs from '../components/ReviewUs.vue';
+import OurRating from '../components/OurRating.vue';
+import OurStatistics from '../components/OurStatistics.vue';
 
 const article = {
   zero: {
@@ -99,9 +101,11 @@ const banner = {
   <TheArticle :content="article.third"></TheArticle>
   <ReviewUs></ReviewUs>
   <TheArticle :content="article.fourth"></TheArticle>
+  <OurRating></OurRating>
   <TheArticle :content="article.fifth"></TheArticle>
   <TheBanner :content="banner.second"></TheBanner>
   <TheArticle :content="article.sixth"></TheArticle>
+  <OurStatistics></OurStatistics>
   <TheArticle :content="article.seventh"></TheArticle>
   <TheBanner :content="banner.third"></TheBanner>
   <TheArticle :content="article.eighth"></TheArticle>
