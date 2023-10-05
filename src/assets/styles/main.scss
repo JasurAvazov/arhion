@@ -28,6 +28,10 @@ a {
     margin: auto;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 html::-webkit-scrollbar {
     width: 10px;
 }

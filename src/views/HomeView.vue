@@ -7,6 +7,7 @@ import TheBanner from '../components/TheBanner.vue'
 import ReviewUs from '../components/ReviewUs.vue';
 import OurRating from '../components/OurRating.vue';
 import OurStatistics from '../components/OurStatistics.vue';
+import TheFooter from '../components/TheFooter.vue';
 
 const article = {
   zero: {
@@ -109,6 +110,7 @@ const banner = {
   <TheArticle :content="article.seventh"></TheArticle>
   <TheBanner :content="banner.third"></TheBanner>
   <TheArticle :content="article.eighth"></TheArticle>
+  <TheFooter></TheFooter>
 </template>
 
 <style lang="scss" scoped>
