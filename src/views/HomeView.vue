@@ -4,9 +4,12 @@ import OurServiсes from '../components/OurServiсes.vue';
 import OurProjects from '../components/OurProjects.vue';
 import TheArticle from '../components/TheArticle.vue';
 import TheBanner from '../components/TheBanner.vue'
+import WithUs from '../components/WithUs.vue';
 import ReviewUs from '../components/ReviewUs.vue';
 import OurRating from '../components/OurRating.vue';
 import OurStatistics from '../components/OurStatistics.vue';
+import TheAnswers from '../components/TheAnswers.vue';
+import TheAdvice from '../components/TheAdvice.vue';
 import TheFooter from '../components/TheFooter.vue';
 
 const article = {
@@ -97,6 +100,7 @@ const banner = {
   <TheArticle :content="article.zero"></TheArticle>
   <OurProjects></OurProjects>
   <TheArticle :content="article.first"></TheArticle>
+  <WithUs></WithUs>
   <TheArticle :content="article.second"></TheArticle>
   <TheBanner :content="banner.first"></TheBanner>
   <TheArticle :content="article.third"></TheArticle>
@@ -110,6 +114,8 @@ const banner = {
   <TheArticle :content="article.seventh"></TheArticle>
   <TheBanner :content="banner.third"></TheBanner>
   <TheArticle :content="article.eighth"></TheArticle>
+  <TheAnswers></TheAnswers>
+  <TheAdvice></TheAdvice>
   <TheFooter></TheFooter>
 </template>
 
