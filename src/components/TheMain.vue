@@ -90,10 +90,11 @@ onMounted(() => {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0;
+    opacity: .2;
+    transition: transform 3s ease, 0.4s opacity;
     &.active {
       opacity: 1;
-      transition: transform 4s ease, 0.4s opacity;
+      z-index: 1;
     }
     &.zoomed {
       transform: scale(1.2); /* Увеличение при анимации */

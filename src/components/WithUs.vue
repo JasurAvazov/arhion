@@ -10,6 +10,8 @@
             delay: 4500,
             disableOnInteraction: false,
           }"
+          :allow-touch-move="false"
+          :loop="true"
           class="mySwiper"
         >
           <swiper-slide
