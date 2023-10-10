@@ -1,68 +1,58 @@
-<script setup>
+<script>
 import TheHeader from "./TheHeader.vue";
 import TheIntro from "./TheIntro.vue";
+import introBg from "../assets/images/jpg/intro.jpg";
 
-import { ref, onMounted } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-const wrapper = ref(null);
+// Import Swiper styles
+import "swiper/css";
 
-const wrapperIsActive = ref(false);
+import "swiper/css/effect-fade";
+// import required modules
+import { EffectFade, Autoplay } from "swiper/modules";
 
-const backgrounds = ref([
-  {
-    link: "url(/src/assets/images/jpg/intro.jpg)",
-    active: true,
-    zoomed: false,
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+    TheIntro,
+    TheHeader,
   },
-  {
-    link: "url(/src/assets/images/jpg/intro.jpg)",
-    active: false,
-    zoomed: false,
+  data() {
+    return {
+      introBg,
+    };
   },
-  {
-    link: "url(/src/assets/images/jpg/intro.jpg)",
-    active: false,
-    zoomed: false,
+  setup() {
+    return {
+      modules: [EffectFade, Autoplay],
+    };
   },
-]);
-
-
-const currentBackgroundIndex = ref(0);
-
-const changeBackground = (items) => {
-  let id = currentBackgroundIndex.value;
-  items[id].style.backgroundImage = backgrounds.value[id].link;
-
-  backgrounds.value.map((el) => (el.active = false));
-  backgrounds.value.map((el) => (el.zoomed = false));
-  backgrounds.value[id].active = true;
-  backgrounds.value[id].zoomed = true;
-
-  currentBackgroundIndex.value =
-    (currentBackgroundIndex.value + 1) % backgrounds.value.length;
-  console.log("hello");
-
-  setTimeout(() => {
-    changeBackground(items);
-  }, 4000);
 };
-
-onMounted(() => {
-  let items = document.querySelectorAll(".wrapper-bg");
-
-  changeBackground(items);
-});
 </script>
 
 <template>
   <div class="wrapper">
-    <div
-      v-for="(item, index) in backgrounds"
-      :key="index"
-      ref="wrapper"
-      class="wrapper-bg"
-      :class="{ zoomed: item.zoomed, active: item.active }"
-    ></div>
+    <div class="wrapper-bg">
+      <swiper
+        :effect="'fade'"
+        :modules="modules"
+        :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :loop="true"
+        class="mySwiper"
+      >
+        <swiper-slide>
+          <img :src="introBg" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+        </swiper-slide>
+      </swiper>
+    </div>
     <div class="container">
       <TheHeader></TheHeader>
       <TheIntro></TheIntro>
@@ -81,24 +71,49 @@ onMounted(() => {
   .container {
     position: relative;
     z-index: 2;
+    height: 100%;
   }
   &-bg {
-    background-image: url("../assets/images/jpg/intro.jpg");
-    background-size: cover;
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    opacity: .2;
-    transition: transform 3s ease, 0.4s opacity;
-    &.active {
-      opacity: 1;
-      z-index: 1;
-    }
-    &.zoomed {
-      transform: scale(1.2); /* Увеличение при анимации */
-    }
+    z-index: 1;
+    overflow: hidden;
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation-name: zoom;
+  animation-duration: 50s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(2.5);
   }
 }
 </style>
